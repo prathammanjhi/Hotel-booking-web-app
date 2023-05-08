@@ -1,0 +1,93 @@
+<?php
+
+$hname = 'localhost';
+$uname = 'root';
+$pass = '';
+$db = 'clgproject';
+
+$con = mysqli_connect($hname, $uname, $pass, $db);
+// throw error is connection not established
+if (!$con) {
+    die("Cannot Connect to database" . mysqli_connect_error());
+}
+
+function filteration($data)
+{
+    foreach ($data as $key => $value) {
+        // trim removes extra spaces 
+        $data[$key] = trim($value);
+        // stripslashes removes backslashes 
+        $data[$key] = stripslashes($value);
+        // special character of html is converted into html by htmlspecialchars 
+        $data[$key] = htmlspecialchars($value);
+        // strip_tags remove html tags 
+        $data[$key] = strip_tags($value);
+    }
+
+    return $data;
+}
+
+function select($query, $values, $datatypes)
+{
+    $query = "SELECT * FROM `admin_cred` WHERE  `admin_name`=? AND `admin_pass`=?";
+    $conn = $GLOBALS['con'];
+    if ($stmt = $conn->prepare($query)) {
+
+        //splat operator used ...$values used for binding parameters
+        // mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        $stmt->bind_param("ss", ...$values);
+
+        if ($stmt->execute()) {
+
+            $res = $stmt->get_result();
+            $stmt->close();
+            $conn->close();
+            return $res;
+        } else {
+            die("query cannot be prepared - select");
+        }
+    } else {
+        die("query cannot be executed - select");
+    }
+
+    // alternate code
+
+    // $stmt = $conn->prepare("SELECT * FROM `admin_cred` WHERE  `admin_name`=? AND `admin_pass`=?");
+    // $stmt->bind_param("$stmt, $datatypes, ...$values");
+    // $stmt->execute();
+    // $result = $stmt->get_result();
+    // $data = $result->fetch_assoc();
+    // mysqli_close($stmt);
+
+    // if ($conn->affected_rows == 0) {
+    //     die("query cannot be executed - select");
+    // } else {
+    // }
+}
+
+
+index.php
+
+if (isset($_POST['login'])) {
+        $frm_data = filteration($_POST);
+
+        $query = "SELECT * FROM `admin_cred` WHERE  `admin_name`=? AND `admin_pass`=?";
+        $values = [$frm_data['admin_name'], $frm_data['admin_pass']];
+        // $result = mysqli_prepare($con, $query);
+
+        $res = select($result, $values, "ss");
+        print_r($res);
+
+        // // print_r($frm_data);
+
+        // if ($res->num_rows == 1) {
+        //     echo "got user";
+        // } else {
+        //     echo <<<alert
+        //         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        //             <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        //         </div>
+        //     alert;
+        // }
+    }

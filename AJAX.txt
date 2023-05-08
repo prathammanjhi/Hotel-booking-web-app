@@ -1,0 +1,45 @@
+XMLHttpRequest object methods:-
+    . open(method,URL,async) --function
+
+        . Method: GET, POST, PUT, DELETE
+        . URL: url where we want to transmit or modify our data
+        . Async: true/false (want to send data Asynchronously or not)
+
+    . Examples:
+        . let xhr = new XMLHttpRequest();
+            xhr.open("GET","file.php",true);
+
+        . let xhr = new XMLHttpRequest();
+             xhr.open("POST","file.php",true);
+
+        . send() / send(string)
+            . Example for "GET" method;
+                let xhr = new XMLHttpRequest()'
+                xhr.open("GET","file.php?id=2",true);
+                xhr.send();
+
+            . Example for "POST" method:
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST","file.php",true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xhr.send("pass=2");
+                . setRequestHeader(label,value)
+        . abort(); //end
+        . readyState
+            . It holds the status of the XMLHttpRequest
+                . 0 - request created
+                . 1 - server connection established
+                . 2 - send function is called and status are recieved
+                . 3 - Processing request
+                . 4 - Request finished and response is ready
+
+        . onreadystatechange
+            . It is an event handler that calls a function when readyState value changes.
+            . Every time a step is completed in request processing, the value of readyState property will be changed and hence onreadystatechange will call the function.
+            . Example:
+            
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET","file.php?id=2",true);
+                xhr.onreadystatechange = function(){
+                    console.log(this.readyState);
+                }
