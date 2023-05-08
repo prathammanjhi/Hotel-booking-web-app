@@ -36,10 +36,41 @@ XMLHttpRequest object methods:-
         . onreadystatechange
             . It is an event handler that calls a function when readyState value changes.
             . Every time a step is completed in request processing, the value of readyState property will be changed and hence onreadystatechange will call the function.
-            . Example:
-            
+            . Example: 
+
                 let xhr = new XMLHttpRequest();
                 xhr.open("GET","file.php?id=2",true);
                 xhr.onreadystatechange = function(){
                     console.log(this.readyState);
                 }
+                xhr.send();
+
+        . status 
+            . It returns HTTP response status code 
+                . 0 - Before the request completes or XMLHttpRequest shows error, the status code is 0
+                . 200 - OK
+                . 403 - Forbidden
+                . 404 - Page not found
+
+            . readyState, onreadystatechange and status
+                . Example:
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("GET","file.php?id=2",true);
+                    xhr.onreadystatechange = function(){
+                        if(this.readyState==4){
+                            console.log(this.status);
+                        }
+                    }
+                    xhr.send();
+
+        . responseText / responseXML 
+            .It returns the response data as String and XML
+            . Example
+                let xhr = mew XMLHttpRequest();
+                xhr.open("GET","file.php?id=2",true);
+                xhr.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status==200){
+                        console.log(xhr.responseText);
+                    }
+                }
+                xht.send();

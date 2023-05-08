@@ -1,0 +1,27 @@
+. JSON stands for javascript Object Notation:
+
+    . It is a data representation format
+    . It is a data interchange between server and application
+        . Example
+            {
+                "name" : "Pratham",
+                "age" : 20,
+                "profession" : "Developer",
+                "college" : "Holkar Science clg"
+            }
+    . It is language independent
+    . Code for read/write JSON exists in many programming languages
+    . It is very light-weighted adn most suitable for exchanging data easily
+    . It is used for serializing and transmitting structured data over network connection
+    . Web service and APIs use JSON format to provide data from servers
+    . JSON data is represented in key-value pair and seperated by commas 
+    . We can store number, string, boolean, array, object or null values
+    . JSON whole data is surrounded bu curly braces
+    . Its file extention is .json
+
+
+. Methods :-
+    . JSON.stringify() -> This method is used to convert object into string or json form
+    . JSON.parse() -> This method is used to convert json string to object
+    . json_encode() -> This method converts array to json string
+    . json_decode() -> This method is used to convert string to object
