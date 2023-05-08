@@ -74,3 +74,5 @@ XMLHttpRequest object methods:-
                     }
                 }
                 xht.send();
+                
+                This what i learnt
