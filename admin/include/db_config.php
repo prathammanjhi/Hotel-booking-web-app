@@ -38,9 +38,28 @@ function select($sql, $values, $datatypes)
             return $res;
         } else {
             mysqli_stmt_close($stmt);
-            die("Query cannot be executed - prepared");
+            die("Query cannot be prepared - select");
         }
     } else {
         die("Query cannot be executed - select");
+    }
+}
+
+// update
+function update($sql, $values, $datatypes)
+{
+    $con = $GLOBALS['con'];
+    if ($stmt = mysqli_prepare($con, $sql)) {
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        if (mysqli_stmt_execute($stmt)) {
+            $res = mysqli_stmt_affected_rows($stmt);
+            mysqli_stmt_close($stmt);
+            return $res;
+        } else {
+            mysqli_stmt_close($stmt);
+            die("Query cannot be prepared - Update");
+        }
+    } else {
+        die("Query cannot be executed - Update");
     }
 }
