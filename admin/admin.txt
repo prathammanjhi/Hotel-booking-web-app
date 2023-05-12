@@ -1,3 +1,9 @@
 Features Included :-
 
+    Settings Section:-
+        . This section includes a dynamic editing section for about section present on landing page
+        . A kill switch or Shutdown button to Shutdown whole website at once to solve any kind of bug or other problem, In which no one will be able to book any room
+
+
+
     

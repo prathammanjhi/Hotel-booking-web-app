@@ -1,3 +1,6 @@
+Landing Page or Homepage - localhost/Clg_Project/
+Admin Login Pannel - localhost/Clg_Project/admin/
+
 Features :-
 
     User End:-
