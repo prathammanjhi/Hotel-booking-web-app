@@ -76,3 +76,6 @@ XMLHttpRequest object methods:-
                 xht.send();
                 
                 This what i learnt
+
+
+. Error created due to ajax code can be inspected in inspect 'Network Section'

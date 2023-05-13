@@ -24,7 +24,14 @@ function filteration($data)
     return $data;
 }
 
-//  prepared
+function selectAll($table)
+{
+    $con = $GLOBALS['con'];
+    $res = mysqli_query($con, "SELECT * FROM $table");
+    return $res;
+}
+
+//  prepared - select 
 
 function select($sql, $values, $datatypes)
 {
@@ -61,5 +68,43 @@ function update($sql, $values, $datatypes)
         }
     } else {
         die("Query cannot be executed - Update");
+    }
+}
+
+// Insert
+function insert($sql, $values, $datatypes)
+{
+    $con = $GLOBALS['con'];
+    if ($stmt = mysqli_prepare($con, $sql)) {
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        if (mysqli_stmt_execute($stmt)) {
+            $res = mysqli_stmt_affected_rows($stmt);
+            mysqli_stmt_close($stmt);
+            return $res;
+        } else {
+            mysqli_stmt_close($stmt);
+            die("Query cannot be prepared - Insert");
+        }
+    } else {
+        die("Query cannot be executed - Insert");
+    }
+}
+
+// delete
+function delete($sql, $values, $datatypes)
+{
+    $con = $GLOBALS['con'];
+    if ($stmt = mysqli_prepare($con, $sql)) {
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        if (mysqli_stmt_execute($stmt)) {
+            $res = mysqli_stmt_affected_rows($stmt);
+            mysqli_stmt_close($stmt);
+            return $res;
+        } else {
+            mysqli_stmt_close($stmt);
+            die("Query cannot be prepared - Delete");
+        }
+    } else {
+        die("Query cannot be executed - Delete");
     }
 }
