@@ -38,3 +38,9 @@ hr{
     margin: 0 auto;
     height: 5px;
 }
+
+.custom-alert{
+    position: fixed;
+    top: 80px;
+    right: 25px;
+}

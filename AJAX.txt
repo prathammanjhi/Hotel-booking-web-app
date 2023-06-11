@@ -79,3 +79,5 @@ XMLHttpRequest object methods:-
 
 
 . Error created due to ajax code can be inspected in inspect 'Network Section'
+
+. AJAX can not store some special characters like '+' so those characters need to be stored and delivered via JSON

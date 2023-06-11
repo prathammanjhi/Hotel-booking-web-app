@@ -3,12 +3,14 @@
 // frontend purpose data
 define('SITE_URL', 'http://127.0.0.1/Clg_Project/');
 define('ABOUT_IMG_PATH', SITE_URL . 'images/about/');
+define('CAROUSEL_IMG_PATH', SITE_URL . 'images/carousel/');
 
 
 // backend upload process needs this data
 // this is absolute path
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'] . '/Clg_Project/images/');
 define('ABOUT_FOLDER', 'about/');
+define('CAROUSEL_FOLDER', 'carousel/');
 
 function adminLogin()
 {
