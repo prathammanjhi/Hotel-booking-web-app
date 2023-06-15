@@ -300,7 +300,7 @@ if (isset($_GET['del'])) {
             xhr.open("POST", "ajax/features_facilities.php", true);
 
             xhr.onload = function() {
-                console.log(this.responseText);
+                // console.log(this.responseText);
 
                 if (this.responseText == 'inv_img') {
                     alert('error', 'only SVG images are allowed!');

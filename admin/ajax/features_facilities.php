@@ -57,7 +57,7 @@ if (isset($_POST['add_facility'])) {
         echo $img_r;
     } else {
         // $q = "INSERT INTO `team_details`(`name`, `picture`) VALUES ('?','?')";
-        $q = "INSERT INTO `facilities`(`icon`, `name`, `description`) VALUES ('?','?','?')";
+        $q = "INSERT INTO `facilities`(`icon`, `name`, `description`) VALUES (?,?,?)";
         $values = [$img_r, $frm_data['name'], $frm_data['desc']];
         $res = insert($q, $values, 'sss');
         echo $res;
@@ -74,8 +74,8 @@ if (isset($_POST['get_facilities'])) {
 
             <tr class= "align-middle">
                 <td>$i</td>
-                <td><img src="$path $row[name]" width = "100px"></td>
-                <td>$row[icon]</td>
+                <td><img src="$path$row[icon]" width = "100px"></td>
+                <td>$row[name]</td>
                 <td>$row[description]</td>
                 <td><button class="btn btn-danger btn-sm shadow-none"   type="button" onclick="rem_facility($row[id])">
                 <i class="bi bi-trash"></i> DELETE
