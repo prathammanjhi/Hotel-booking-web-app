@@ -1,0 +1,3 @@
+. Prepared statements can beused at multiple place after creating it once.
+. Prepared statement reduces the time taken by a query to execute as it takes some time to run a query but instead of executing multiple queries each time a single prepared statement is passed which saves time and labour.
+. It is used in rooms.php/ajax for executing query for myltiple facilities in a single parameter.
