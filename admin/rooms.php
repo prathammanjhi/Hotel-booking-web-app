@@ -343,9 +343,10 @@ adminLogin();
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">Room Name</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div id="image-alert"></div>
                     <div class="border-bottom border-3 pb-3 mb-3">
                         <form id="add_image_form">
                             <label class="form-label fw-bold">Add Image</label>
@@ -562,6 +563,53 @@ adminLogin();
 
             xhr.send('toggle_status=' + id + '&value=' + val);
         }
+
+
+        let add_image_form = document.getElementById('add_image_form');
+
+        add_image_form.addEventListener('submit', function(e) {
+            e.preventDefault;
+            add_image();
+        });
+
+        function add_image() {
+            let data = new FormData();
+
+            data.append('image', add_image_form.elements['image'].files[0]);
+            data.append('room_id', add_image_form.elements['room_id'].value);
+            data.append('add_image', '');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/rooms.php", true);
+
+            xhr.onload = function() {
+                console.log(this.responseText);
+
+                if (this.responseText == 'inv_img') {
+                    alert('error', 'only JPG and PNG images are allowed!');
+                } else if (this.responseText == 'inv_size') {
+                    alert('error', 'Image size must be less than 2 mb!');
+                } else if (this.responseText == 'upd_failed') {
+                    alert('error', 'Image upload failed. SERVER DOWN!');
+                } else {
+                    alert('success', 'New imaage added!', 'image-alert');
+
+                    add_image_form.reset();
+                }
+
+            }
+
+            xhr.send(data);
+
+        }
+
+        function room_images(id, rname) {
+            document.querySelector("#room-images .modal-title").innerText = rname;
+            add_room_form.elements['room_id'].value = id;
+            add_room_form.elements['image'].value = '';
+
+        }
+
 
         window.onload = function() {
             get_all_rooms();
