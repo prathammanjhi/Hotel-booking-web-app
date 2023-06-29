@@ -11,15 +11,15 @@
         </div>
         `;
 
-        if (position == body) {
+        if (position == 'body') {
             document.body.append(element);
             element.classList.add('custom-alert');
         } else {
             document.getElementById(position).appendChild(element);
         }
 
-        document.body.append(element);
-        setTimeout(remAlert, 15000);
+        // document.body.append(element);
+        setTimeout(remAlert, 2000);
     }
 
     function remAlert() {

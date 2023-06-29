@@ -137,7 +137,7 @@ adminLogin();
 
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Name</label>
-                                <input type="text" name="name" required class="form-control shadow-none">
+                                <input type="text" name="name" required class="form-control shadow-none" autocomplete="name">
                             </div>
 
 
@@ -230,9 +230,10 @@ adminLogin();
     </div>
 
     <!-- Edit room modal -->
-    <div class="modal fade" id="edit-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="edit_room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
 
+            <!-- form -->
             <form id="edit_room_form" autocomplete="off">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -245,7 +246,7 @@ adminLogin();
 
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Name</label>
-                                <input type="text" name="name" required class="form-control shadow-none">
+                                <input type="text" name="name" required class="form-control shadow-none" autocomplete="name">
                             </div>
 
 
@@ -350,8 +351,8 @@ adminLogin();
                     <div class="border-bottom border-3 pb-3 mb-3">
                         <form id="add_image_form">
                             <label class="form-label fw-bold">Add Image</label>
-                            <input type="file" name="image" accept=".jpg, .png, .jpeg" class="form-control shadow-none mb-3" required>
-                            <button type="submit" class="btn custom-bg text-white shadow-none">ADD</button>
+                            <input type="file" name="image" accept=".jpg, .png, .jpeg, .webp" class="form-control shadow-none mb-3" required>
+                            <button class="btn custom-bg text-white shadow-none">ADD</button>
                             <input type="hidden" name="room_id">
                         </form>
                     </div>
@@ -378,6 +379,9 @@ adminLogin();
 
 
     <?php require('include/script.php') ?>
+
+    <!-- scripts  -->
+
     <script>
         let add_room_form = document.getElementById('add_room_form');
 
@@ -402,7 +406,7 @@ adminLogin();
             // add_room_form.elements['features']
             add_room_form.elements['features'].forEach(el => {
                 if (el.checked) {
-                    // console.log(el.value);
+                    console.log(el.value);
                     features.push(el.value);
                 }
             });
@@ -444,7 +448,7 @@ adminLogin();
 
             xhr.onload = function() {
 
-                // console.log(this.responseText);
+                console.log(this.responseText);
                 document.getElementById('room-data').innerHTML = this.responseText;
             }
 
@@ -454,6 +458,7 @@ adminLogin();
         let edit_room_form = document.getElementById('edit_room_form');
 
         function edit_details(id) {
+            console.log(id); //this will print the room id which is being edited
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "ajax/rooms.php", true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -465,7 +470,7 @@ adminLogin();
                 let data = JSON.parse(this.responseText);
                 edit_room_form.elements['name'].value = data.roomdata.name;
                 edit_room_form.elements['area'].value = data.roomdata.area;
-                edit_room_form.elements['Price'].value = data.roomdata.Price;
+                edit_room_form.elements['Price'].value = data.roomdata.price;
                 edit_room_form.elements['quantity'].value = data.roomdata.quantity;
                 edit_room_form.elements['adult'].value = data.roomdata.adult;
                 edit_room_form.elements['children'].value = data.roomdata.children;
@@ -530,11 +535,14 @@ adminLogin();
             xhr.open("POST", "ajax/rooms.php", true);
 
             xhr.onload = function() {
+                var myModal = document.getElementById('edit_room');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
 
                 // console.log(this.responseText);
 
                 if (this.responseText == 1) {
-                    alert('success', 'Room data Submited!');
+                    alert('success', 'Room data edited!');
                     edit_room_form.reset();
                     get_all_rooms();
                 } else {
@@ -551,13 +559,12 @@ adminLogin();
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             xhr.onload = function() {
-
-                // console.log(this.responseText);
                 if (this.responseText == 1) {
                     alert('success', 'status toggled!');
                     get_all_rooms();
+                    // console.log(this.responseText);
                 } else {
-                    alert('success', 'server down!');
+                    alert('error', 'server down!');
                 }
             }
 
@@ -583,16 +590,19 @@ adminLogin();
             xhr.open("POST", "ajax/rooms.php", true);
 
             xhr.onload = function() {
-                console.log(this.responseText);
+                // console.log(this.responseText);
 
                 if (this.responseText == 'inv_img') {
-                    alert('error', 'only JPG and PNG images are allowed!');
+                    alert('error', 'only JPG, WEBP and PNG  images are allowed!', 'image-alert');
                 } else if (this.responseText == 'inv_size') {
-                    alert('error', 'Image size must be less than 2 mb!');
+                    alert('error', 'Image size must be less than 2 mb!', 'image-alert');
                 } else if (this.responseText == 'upd_failed') {
-                    alert('error', 'Image upload failed. SERVER DOWN!');
+                    alert('error', 'Image upload failed. SERVER DOWN!', 'image-alert');
                 } else {
                     alert('success', 'New imaage added!', 'image-alert');
+
+                    // recalling room images function to make it async
+                    room_images(add_image_form.elements['room_id'].value, document.querySelector("#room-images .modal-title").innerText);
 
                     add_image_form.reset();
                 }
@@ -605,9 +615,112 @@ adminLogin();
 
         function room_images(id, rname) {
             document.querySelector("#room-images .modal-title").innerText = rname;
-            add_room_form.elements['room_id'].value = id;
-            add_room_form.elements['image'].value = '';
+            add_image_form.elements['room_id'].value = id;
+            add_image_form.elements['image'].value = '';
 
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/rooms.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function() {
+                document.getElementById('room-image-data').innerHTML = this.responseText;
+            }
+
+            xhr.send('get_room_images=' + id);
+        }
+
+        function rem_image(img_id, room_id) {
+            let data = new FormData();
+
+            data.append('image_id', img_id);
+            data.append('room_id', room_id);
+            data.append('rem_image', '');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/rooms.php", true);
+
+            xhr.onload = function() {
+                // console.log(this.responseText);
+
+                if (this.responseText == 1) {
+
+                    alert('success', 'imaage removed!', 'image-alert');
+                    room_images(room_id.document.querySelector("#room-images .modal-title").innerText);
+
+                } else {
+
+                    alert('error', 'failed to remove!', 'image-alert');
+                    // recalling room images function to make it async
+
+                    add_image_form.reset();
+                }
+
+            }
+
+            xhr.send(data);
+        }
+
+        function thumb_image(img_id, room_id) {
+            let data = new FormData();
+
+            data.append('image_id', img_id);
+            data.append('room_id', room_id);
+            data.append('thumb_image', '');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/rooms.php", true);
+
+            xhr.onload = function() {
+                // console.log(this.responseText);
+
+                if (this.responseText == 1) {
+
+                    alert('success', 'imaage thumbnail changed!', 'image-alert');
+                    room_images(room_id.document.querySelector("#room-images .modal-title").innerText);
+
+                } else {
+
+                    alert('error', 'failed to update thumbnail!', 'image-alert');
+                    // recalling room images function to make it async
+
+                    // add_image_form.reset();
+                }
+
+            }
+
+            xhr.send(data);
+        }
+
+        function remove_room(room_id) {
+
+            if (confirm("Are You Sure, you want to delete this room?")) {
+
+                let data = new FormData();
+                data.append('room_id', room_id);
+                data.append('remove_room', '');
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "ajax/rooms.php", true);
+
+                xhr.onload = function() {
+                    // console.log(this.responseText);
+
+                    if (this.responseText == 1) {
+
+                        alert('success', 'Successfully removed!');
+                        get_all_rooms();
+
+                    } else {
+
+                        alert('error', 'failed to remove!');
+
+                    }
+
+                }
+
+                xhr.send(data);
+
+            }
         }
 
 
