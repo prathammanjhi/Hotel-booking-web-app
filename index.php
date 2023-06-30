@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <?php require('include/links.php') ?>
+    <title><?php echo $settings_r['site_title'] ?>- Home</title>
 
     <style>
         .availability-form {
@@ -249,7 +249,7 @@
 
                 <div class="swiper-slide bg-white p-4">
                     <div class="profile d-flex align-items-center mb-3">
-                        <img src="images/facilities/IMG_41622.svg" alt="" width="30px">
+                        <img src="" width="30px">
                         <h6 class="m-0 ms-2">Random user1</h6>
                     </div>
                     <p>
@@ -264,7 +264,7 @@
                 </div>
                 <div class="swiper-slide bg-white p-4">
                     <div class="profile d-flex align-items-center mb-3">
-                        <img src="images/facilities/IMG_41622.svg" alt="" width="30px">
+                        <img src="" alt="" width="30px">
                         <h6 class="m-0 ms-2">Random user1</h6>
                     </div>
                     <p>
@@ -279,7 +279,7 @@
                 </div>
                 <div class="swiper-slide bg-white p-4">
                     <div class="profile d-flex align-items-center mb-3">
-                        <img src="images/facilities/IMG_41622.svg" alt="" width="30px">
+                        <img src="" alt="" width="30px">
                         <h6 class="m-0 ms-2">Random user1</h6>
                     </div>
                     <p>

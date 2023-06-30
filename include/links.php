@@ -4,3 +4,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <?php
+    // header section is included in index and other pages which are directly present in clg_project folder therefor we didn't need to go back to clg_project directory from include directory (../)
+    require('admin/include/db_config.php');
+    require('admin/include/essentials.php');
+
+    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+    $setting_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+    $values = [1];
+    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+    $settings_r = mysqli_fetch_assoc(select($setting_q, $values, 'i'));
+    // print_r($contact_r)
+    ?>

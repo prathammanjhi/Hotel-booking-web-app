@@ -103,3 +103,7 @@ What is AJAX :-
     . XMLHttpRequest is an API and core of AJAX.
 
 https://swiperjs.com/demos/220-effect-fade/core
+
+
+Features in Registration Form :-
+    . Email verification :- A verification mail is sent to the user to verify the email and after verifying the email the data client tabel row is updated to verified and if you click on the verification again the diffrent response will be displayed and you will be redirected to the main home page.
