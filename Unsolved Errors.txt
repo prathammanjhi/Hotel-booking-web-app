@@ -1,8 +1,13 @@
-Error while sending data to backend (Insert) in room admin
+There were a lot of errors beforehand but i just got this idea to create an error page
+
+
+1. Error while sending data to backend (Insert) in room admin
     -rooms.php?image=pexels-taha-samet-arslan-7781900.jpg&room_id=:1 Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
 
     -Uncaught TypeError: Cannot set properties of undefined (setting 'value')
     at room_images (rooms.php?image=pexels-taha-samet-arslan-7781900.jpg&room_id=:734:51)
     at HTMLButtonElement.onclick (rooms.php?image=pexels-taha-samet-arslan-7781900.jpg&room_id=:1:1)
 
-While adding rooms alert of server dowm is popping up !(dont know why)
+Above Error is occuring while edititng rooms -
+
+2. While adding rooms alert of server dowm is popping up !(dont know why) - Solved
