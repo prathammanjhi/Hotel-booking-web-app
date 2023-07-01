@@ -107,3 +107,11 @@ https://swiperjs.com/demos/220-effect-fade/core
 
 Features in Registration Form :-
     . Email verification :- A verification mail is sent to the user to verify the email and after verifying the email the data client tabel row is updated to verified and if you click on the verification again the diffrent response will be displayed and you will be redirected to the main home page.
+
+Features in Reset Password Form :-
+    . A mail will be sent to user at verified email account where they will be redirected to anoter modal form where they will reset password and the link will only be valid for 24 hrs if it is accessed after the time period the reset token will be expired and reset modal form will not appear.
+
+    Security while Recovery:-
+        . If a person try to change the password of another users email the update query will match both token and email before updation and the token is randon 16 digit boolean so it is impossible to hack in..
+
+        . Once the password is updated the corrosponding link present in the mail will no longer work becouse the value of token and date will become null hence a new recovery process must be done.

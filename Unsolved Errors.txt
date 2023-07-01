@@ -11,3 +11,5 @@ There were a lot of errors beforehand but i just got this idea to create an erro
 Above Error is occuring while edititng rooms -
 
 2. While adding rooms alert of server dowm is popping up !(dont know why) - Solved
+
+3. Bug while clicking on cancle button of forgot password modal login modal should appear but it is not workin. 

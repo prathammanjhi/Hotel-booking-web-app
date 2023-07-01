@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <?php
+
+    session_start();
+    date_default_timezone_set("Asia/Kolkata");
+
+
     // header section is included in index and other pages which are directly present in clg_project folder therefor we didn't need to go back to clg_project directory from include directory (../)
     require('admin/include/db_config.php');
     require('admin/include/essentials.php');
@@ -16,4 +21,13 @@
     $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
     $settings_r = mysqli_fetch_assoc(select($setting_q, $values, 'i'));
     // print_r($contact_r)
+
+    if ($settings_r['shutdown']) {
+        echo <<<alertbar
+            <div class='bg-danger text-center p-2 fw-bold'>
+                <i class="bi bi-exclamation-triangle-fill"></li>
+                Bookings are temporarily closed!
+            </div>
+        alertbar;
+    }
     ?>

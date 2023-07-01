@@ -23,14 +23,38 @@
                     <a class="nav-link" href="about.php">About</a>
                 </li>
             </ul>
-            <div class="d-flex" role="search">
+            <div class="d-flex">
 
-                <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <?php
+                if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+                    $path = USERS_IMG_PATH;
+
+                    echo <<<data
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-dark shadow-none dropdown-toggle rounded-pill" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <img src="$path$_SESSION[uPic]" style="width: 30px; height: 30px; border-radius: 50%;" class = "me-1">  
+                            $_SESSION[uName]
+                        </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                      <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                      <li><a class="dropdown-item" href="bookings.php">Bookings</a></li>
+                      <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
+                    </ul>
+                    </div>
+                    data;
+                } else {
+                    echo <<<data
+                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-2 me-3" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login
-                </button>
-                <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    </button>
+                    <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
                     Registar
-                </button>
+                    </button>
+                    data;
+                }
+                ?>
+
+
             </div>
         </div>
     </div>
@@ -40,7 +64,7 @@
 <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form id="login-form">
                 <!-- MODAL HEAD -->
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 d-flex align-items-center"><i class="bi bi-person-circle fs-3 me-2"></i>User Login</h1>
@@ -49,19 +73,21 @@
                 <!-- MODAL BODY -->
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Email address</label>
-                        <input type="email" class="form-control shadow-none" aria-describedby="emailHelp">
+                        <label class="form-label">Email/Mobile</label>
+                        <input type="text" name="email_mob" class="form-control shadow-none" required>
 
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control shadow-none">
+                        <input type="password" name="pass" required class="form-control shadow-none">
                         <div class="form-text">Login to explore more !..</div>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <button type="submit" class="btn btn-outline-secondary shadow-none">LOGIN</button>
-                        <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
+                        <button type="button" class="btn text-secondary text-decoration-none shadow-none me-lg-3 me-2 p-0" data-bs-toggle="modal" data-bs-target="#forgotModal" data-bs-dismiss="modal">
+                            Forgot Password?
+                        </button>
                     </div>
                 </div>
                 <!-- <div class="modal-footer">
@@ -145,6 +171,38 @@
                             <button type="submit" class="btn btn-outline-secondary shadow-none">LOGIN</button>
                             <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
                         </div> -->
+                </div>
+                <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Forgot Modal -->
+<div class="modal fade" id="forgotModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="forgot-form">
+                <!-- MODAL HEAD -->
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 d-flex align-items-center"><i class="bi bi-person-circle fs-3 me-2"></i>Forgot Password</h1>
+                </div>
+                <!-- MODAL BODY -->
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <span class="badge text-bg-light mb-3 text-wrap lh-base">Note: A Link Will be sent to your email to reset your Password.
+                        </span>
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control shadow-none" required>
+
+                    </div>
+                    <div class=" mb-2 text-end">
+                        <button type="button" class="btn shadow-none p-0 me-2" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">CANCEL</button>
+                        <button type="submit" class="btn btn-outline-secondary shadow-none">Send Link</button>
+                    </div>
                 </div>
                 <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

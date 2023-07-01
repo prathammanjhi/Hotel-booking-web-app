@@ -34,10 +34,12 @@
         </div>
     </div>
 
-    <h6 class="text-center bg-dark text-white p-3 m-0">Designed and Developed by Pratham</h6>
+    <h6 class="text-center bg-dark text-white p-3 m-0">Designed and Developed by Pratham Shikhar And Hemant</h6>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
     <script>
         // alert
@@ -82,6 +84,7 @@
             }
         }
 
+        // register form 
         let register_form = document.getElementById('register-form');
 
         register_form.addEventListener('submit', (e) => {
@@ -130,6 +133,82 @@
 
             xhr.send(data);
         });
+
+        // login form
+        let login_form = document.getElementById('login-form');
+
+        login_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let data = new FormData();
+
+            data.append('email_mob', login_form.elements['email_mob'].value);
+            data.append('pass', login_form.elements['pass'].value);
+
+            data.append('login', '');
+
+            var myModal = document.getElementById('loginModal');
+            var modal = bootstrap.Modal.getInstance(myModal);
+            modal.hide();
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/login_register.php", true);
+
+            xhr.onload = function() {
+                if (this.responseText == 'inv_email_mob') {
+                    alert('error', 'Invalid Email or Mobile Number!');
+                } else if (this.responseText == 'not_verified') {
+                    alert('error', 'email not verified!');
+                } else if (this.responseText == 'inactive') {
+                    alert('error', 'Account Suspended! Please contact admin');
+                } else if (this.responseText == 'invalid_pass') {
+                    alert('error', 'Incorrect Password!');
+                } else {
+                    window.location = window.location.pathname;
+                }
+            }
+
+            xhr.send(data);
+        });
+
+        // forgot form
+        let forgot_form = document.getElementById('forgot-form');
+
+        forgot_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let data = new FormData();
+
+            data.append('email', forgot_form.elements['email'].value);
+            data.append('forgot_pass', '');
+
+            var myModal = document.getElementById('forgotModal');
+            var modal = bootstrap.Modal.getInstance(myModal);
+            modal.hide();
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/login_register.php", true);
+
+            xhr.onload = function() {
+                if (this.responseText == 'inv_email') {
+                    alert('error', 'Invalid Email !');
+                } else if (this.responseText == 'not_verified') {
+                    alert('error', 'email not verified!');
+                } else if (this.responseText == 'inactive') {
+                    alert('error', 'Account Suspended! Please contact admin');
+                } else if (this.responseText == 'mail_failed') {
+                    alert('error', 'Cannot send email!');
+                } else if (this.responseText == 'upd_failed') {
+                    alert('error', 'Account recovery failed!');
+                } else {
+                    alert('success', "Reset link sent to email!");
+                    forgot_form.reset();
+                }
+            }
+
+            xhr.send(data);
+        });
+
 
         setActive();
     </script>
