@@ -108,6 +108,11 @@ https://swiperjs.com/demos/220-effect-fade/core
 Features in Registration Form :-
     . Email verification :- A verification mail is sent to the user to verify the email and after verifying the email the data client tabel row is updated to verified and if you click on the verification again the diffrent response will be displayed and you will be redirected to the main home page.
 
+Features in Login Form :-
+    . Login can take both the either email or phone.no to login if user is loged in only then they can book a room 
+    . When a user logsin from any specific page after login you will get to where you were before login usin window.location.pathname.
+        . When on room details you will get to that specific room usin window.location.href.split('/').pop().split('?').shift();
+
 Features in Reset Password Form :-
     . A mail will be sent to user at verified email account where they will be redirected to anoter modal form where they will reset password and the link will only be valid for 24 hrs if it is accessed after the time period the reset token will be expired and reset modal form will not appear.
 

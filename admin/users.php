@@ -69,12 +69,12 @@ adminLogin();
 
     <div class="container-fluid " id="main-content">
         <div class="row ">
-            <div class="col-lg-10 ms-auto p-4 overflow-hidden">
+            <div class="col-lg-10 ms-auto p-4 overflow-hidden bg-dark-subtle">
                 <h3 class="mb-4">ROOMS</h3>
 
                 <!-- Rooms -->
 
-                <div class="card border-0 shadow-sm mb-4">
+                <div class="card border-0 shadow-sm mb-4 ">
                     <div class="card-body">
 
                         <!-- room settings -->

@@ -16,17 +16,19 @@
     <?php require('include/header.php'); ?>
 
     <div class="my-5 px-4">
-        <h2 class="fw-bold h-font text-center">CONTACT US</h2>
+        <h2 class="fw-bold h-font text-center delay">CONTACT US</h2>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto sed temporibus mollitia <br> accusantium necessitatibus culpa voluptatibus repellat fugit minima optio.</p>
+        <p class="text-center mt-3 p-5 mx-5 delay">
+            <?php echo $settings_r['site_about'] ?>
+        </p>
     </div>
 
 
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 mb-5 px-4">
-                <div class="bg-white rounded shadow p-4">
+            <div class="col-lg-6 col-md-6 mb-5 px-4 delay">
+                <div class="bg-dark-subtle rounded shadow p-4">
                     <!-- map and address -->
                     <iframe class="w-100 rounded mb-5" src="<?php echo $contact_r['iframe'] ?>" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
@@ -78,8 +80,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 px-4">
-                <div class="bg-white rounded shadow p-4">
+            <div class="col-lg-6 col-md-6 px-4 delay">
+                <div class="bg-dark-subtle rounded shadow p-4">
                     <form action="" method="POST">
                         <h5>Send a message</h5>
                         <div class="mb-3">

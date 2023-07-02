@@ -67,7 +67,7 @@ adminLogin();
 
     <?php require('include/header.php') ?>
 
-    <div class="container-fluid " id="main-content">
+    <div class="container-fluid bg-dark-subtle" id="main-content">
         <div class="row ">
             <div class="col-lg-10 ms-auto p-4 overflow-hidden">
                 <h3 class="mb-4">ROOMS</h3>

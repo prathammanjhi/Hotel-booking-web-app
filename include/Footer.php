@@ -1,6 +1,6 @@
     <!-- Footter -->
 
-    <div class="container-fluid bg-white mt-5">
+    <div class="container-fluid bg-dark-subtle mt-5">
         <div class="row">
             <div class="col-lg-4 p-4">
                 <h3 class="h-font fw-bold fs-3 mb-2"><?php echo $settings_r['site_title'] ?></h3>
@@ -40,6 +40,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+    <script>
+        ScrollReveal().reveal('.delay', {
+            delay: 200,
+            reset: true
+        });
+    </script>
 
     <script>
         // alert
@@ -164,7 +171,15 @@
                 } else if (this.responseText == 'invalid_pass') {
                     alert('error', 'Incorrect Password!');
                 } else {
-                    window.location = window.location.pathname;
+                    let fileurl = window.location.href.split('/').pop().split('?').shift();
+                    if (fileurl == 'room_details.php') {
+                        window.location = window.location.href;
+
+                    } else {
+
+                        window.location = window.location.pathname;
+                    }
+
                 }
             }
 
@@ -209,6 +224,13 @@
             xhr.send(data);
         });
 
+        function checkLoginToBook(status, room_id) {
+            if (status) {
+                window.location.href = 'confirm_booking.php?id=' + room_id;
+            } else {
+                alert('error', 'Please login to book room!');
+            }
+        }
 
         setActive();
     </script>

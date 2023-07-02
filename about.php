@@ -15,24 +15,26 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-body-tertiary">
 
     <?php require('include/header.php'); ?>
 
-    <div class="my-5 px-4">
-        <h2 class="fw-bold h-font text-center">ABOUT US</h2>
+    <div class="my-5 px-4 text-center delay">
+        <h2 class="fw-bold h-font text-center delay">ABOUT US</h2>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto sed temporibus mollitia <br> accusantium necessitatibus culpa voluptatibus repellat fugit minima optio.</p>
+        <p class="text-center mt-3 p-5 mx-5 delay">
+            <?php echo $settings_r['site_about'] ?>
+        </p>
     </div>
 
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-6 clo-md-5 mb-4 order-lg-1 order-md-1 order-2">
-                <h3 class="mb-3">Lorem ipsum dolor sit.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad et, ducimus asperiores cum quisquam dolorem eius ex perferendis architecto harum, eum qui tempore unde maxime aperiam animi soluta illum exercitationem.</p>
+                <h3 class="mb-3 h-font delay">OUR TEAM</h3>
+                <p class="delay">We are classmates and luckiely room mates and hence thaught of creating somethnig fun which can add value of our lives and hence made this. <i class="bi bi-cup-hot-fill"></i></p>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
-                <img src="images/about/about.jpg" alt="" class="w-100">
+                <img src="images/profiles/group.jpg" alt="" class="w-100 rounded delay">
             </div>
         </div>
     </div>
@@ -40,25 +42,25 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
+                <div class="bg-dark-subtle rounded shadow p-4 border-top border-4 text-center box delay">
                     <img src="images/about/hotel.svg" width="70px" alt="">
                     <h4 class="mt-3">100+ ROOMS</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
+                <div class="bg-dark-subtle rounded shadow p-4 border-top border-4 text-center box delay">
                     <img src="images/about/customers.svg" width="70px" alt="">
                     <h4 class="mt-3">200+ CUSTOMERS</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
+                <div class="bg-dark-subtle rounded shadow p-4 border-top border-4 text-center box delay">
                     <img src="images/about/rating.svg" width="70px" alt="">
                     <h4 class="mt-3">150+ REVIEWS</h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 px-4">
-                <div class="bg-white rounded shadow p-4 border-top border-4 text-center box">
+                <div class="bg-dark-subtle rounded shadow p-4 border-top border-4 text-center box delay">
                     <img src="images/about/hotel.svg" width="70px" alt="">
                     <h4 class="mt-3">200+ STAFFS</h4>
                 </div>
@@ -66,7 +68,7 @@
         </div>
     </div>
 
-    <h3 class="my-5 fw-bold h-font text-center">MANAGEMENT TEAM</h3>
+    <h3 class="my-5 fw-bold h-font text-center delay">MANAGEMENT TEAM</h3>
 
     <!-- Management carousel -->
 
@@ -80,9 +82,9 @@
 
                 while ($row = mysqli_fetch_assoc($about_r)) {
                     echo <<<data
-                    <div class="swiper-slide bg-white text center overflow-hidden rounded">
-                    <img src="$path$row[picture]" alt="" class="w-100">
-                    <h5 class="mt-2">$row[name]</h5>
+                    <div class="swiper-slide bg-dark-subtle text center overflow-hidden rounded delay">
+                    <img src="$path$row[picture]" alt="" class="w-100 rounded">
+                    <h5 class="mt-2 ps-4">$row[name]</h5>
                     </div>
                     data;
                 }

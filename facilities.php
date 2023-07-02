@@ -24,7 +24,9 @@
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">OUR FACILITIES</h2>
         <div class="h-line bg-dark"></div>
-        <p class="text-center mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto sed temporibus mollitia <br> accusantium necessitatibus culpa voluptatibus repellat fugit minima optio.</p>
+        <p class="text-center mt-3 p-5 mx-5">
+            <?php echo $settings_r['site_about'] ?>
+        </p>
     </div>
 
     <div class="container">
@@ -36,8 +38,8 @@
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo <<<data
-                    <div class="col-lg-4 col-md-6 mb-5 px-4">
-                    <div class="bg-white rounded shadow p-4  border-top border-4 border-dark pop">
+                    <div class="col-lg-4 col-md-6 mb-5 px-4 delay">
+                    <div class="bg-dark-subtle rounded shadow p-4  border-top border-4 border-dark pop">
                         <div class="d-flex align-items-center mb-2">
     
                             <img src="$path$row[icon]" alt="" width="40px">

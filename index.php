@@ -25,13 +25,13 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-body-tertiary">
 
     <?php require('include/header.php'); ?>
 
     <!-- carousel -->
 
-    <div class="container-fluid px-lg-4 mt-4">
+    <div class="container-fluid px-lg-4 mt-4 delay">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
 
@@ -42,7 +42,7 @@
                     $path = CAROUSEL_IMG_PATH;
                     echo <<<data
                         
-                        <div class="swiper-slide">
+                        <div class="swiper-slide ">
                         <img src="$path$row[image]" class="w-100 d-block" />
                         </div>
                     data;
@@ -60,9 +60,9 @@
 
     <!-- check availability form -->
 
-    <div class="container availability-form">
+    <div class="container availability-form delay">
         <div class="row">
-            <div class="col-lg-12 bg-white shadow p-4 rounded">
+            <div class="col-lg-12 bg-dark-subtle shadow p-4 rounded">
                 <h5 class="mb-4">Check Booking Availability</h5>
                 <form action="">
                     <div class="row align-items-end">
@@ -103,9 +103,9 @@
 
     <!-- Room Cards -->
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR ROOMS</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font delay">OUR ROOMS</h2>
 
-    <div class="container">
+    <div class="container delay">
         <div class="row">
 
             <!-- Cards -->
@@ -151,15 +151,19 @@
                 $book_btn = "";
 
                 if (!$settings_r['shutdown']) {
-                    $book_btn = "<a href='#' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</a>";
+                    $login = 0;
+                    if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+                        $login = 1;
+                    }
+                    $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</button>";
                 }
 
                 //print room card
 
                 echo <<<data
 
-                    <div class="col-lg-4 col-md-6 my-3">
-                    <div class="card border-0 shadow" style="max-width: 350px; margin: auto;">
+                    <div class="col-lg-4 col-md-6 my-3 delay">
+                    <div class="card border-0 shadow-none bg-dark-subtle" style="max-width: 350px; margin: auto;">
                         <img src="$room_thumb" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5>$room_data[name]</h5>
@@ -208,7 +212,7 @@
             ?>
 
 
-            <div class="col-lg-12 text-center mt-5">
+            <div class="col-lg-12 text-center mt-5 delay">
                 <a href="rooms.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms >>></a>
             </div>
         </div>
@@ -216,9 +220,9 @@
 
     <!-- Our Facilities -->
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR Facilities</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font delay">OUR Facilities</h2>
 
-    <div class="container">
+    <div class="container delay">
         <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
 
             <?php
@@ -227,7 +231,7 @@
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo <<<data
-                <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3 ">
+                <div class="col-lg-2 col-md-2 text-center bg-dark-subtle rounded shadow py-4 my-3 ">
                 <img src="$path$row[icon]" width="80px">
                 <h5 class="mt-3">$row[name]</h5>
                 </div>
@@ -235,7 +239,7 @@
             }
             ?>
 
-            <div class="col-lg-12 text-center mt-5">
+            <div class="col-lg-12 text-center mt-5 delay">
 
                 <a href="facilities.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Facilities >>></a>
 
@@ -246,20 +250,20 @@
 
     <!-- Testimonials -->
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">TESTIMONIALS</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font delay">TESTIMONIALS</h2>
 
-    <div class="container mt-5">
+    <div class="container mt-5 delay">
         <div class="swiper swiper-testimonials">
 
             <div class="swiper-wrapper mb-5">
 
-                <div class="swiper-slide bg-white p-4">
+                <div class="swiper-slide bg-dark-subtle rounded p-4 delay">
                     <div class="profile d-flex align-items-center mb-3">
-                        <img src="" width="30px">
-                        <h6 class="m-0 ms-2">Random user1</h6>
+                        <img src="images/profiles/pratham.jpg" class="rounded-circle" width="30px">
+                        <h6 class="m-0 ms-2">Pratham</h6>
                     </div>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusamus praesentium officiis eius, maxime nesciunt iste nemo cumque architecto eos.
+                        This Site gives the perfect thing which we want thanks to the filters
                     </p>
                     <div class="rating">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -268,13 +272,13 @@
                         <i class="bi bi-star-fill text-warning"></i>
                     </div>
                 </div>
-                <div class="swiper-slide bg-white p-4">
+                <div class="swiper-slide bg-dark-subtle rounded p-4 delay">
                     <div class="profile d-flex align-items-center mb-3">
-                        <img src="" alt="" width="30px">
-                        <h6 class="m-0 ms-2">Random user1</h6>
+                        <img src="images/profiles/hemant.jpg" class="rounded-circle" alt="" width="30px">
+                        <h6 class="m-0 ms-2">Hemant</h6>
                     </div>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusamus praesentium officiis eius, maxime nesciunt iste nemo cumque architecto eos.
+                        Astonished by the functioning of this website
                     </p>
                     <div class="rating">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -283,13 +287,13 @@
                         <i class="bi bi-star-fill text-warning"></i>
                     </div>
                 </div>
-                <div class="swiper-slide bg-white p-4">
+                <div class="swiper-slide bg-dark-subtle rounded p-4 delay">
                     <div class="profile d-flex align-items-center mb-3">
-                        <img src="" alt="" width="30px">
-                        <h6 class="m-0 ms-2">Random user1</h6>
+                        <img src="images/profiles/shikhar.jpg" class="rounded-circle" alt="" width="30px">
+                        <h6 class="m-0 ms-2">Shikher</h6>
                     </div>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusamus praesentium officiis eius, maxime nesciunt iste nemo cumque architecto eos.
+                        Best place to find a shelter while traveling whole nation.
                     </p>
                     <div class="rating">
                         <i class="bi bi-star-fill text-warning"></i>
@@ -306,7 +310,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12 text-center mt-5">
+    <div class="col-lg-12 text-center mt-5 delay">
 
         <a href="about.php" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">Know More >>></a>
 
@@ -316,18 +320,18 @@
 
 
 
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Reach Us</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font delay">Reach Us</h2>
 
-    <div class="container ">
+    <div class="container delay">
         <div class="row ">
-            <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-                <iframe class="w-100 rounded" src="<?php echo $contact_r['iframe'] ?>" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="col-lg-8 col-md-8 p-2 mb-lg-0 mb-3 bg-dark-subtle rounded">
+                <iframe class="w-100 rounded p-0" style="height: 100%;" src="<?php echo $contact_r['iframe'] ?>" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <div class="col-lg-4 col-md-4">
+            <div class="col-lg-4 col-md-4 delay">
 
 
                 <!-- <div class="bg-white p-4 col-md-4 m-0"> -->
-                <div class="bg-white col-lg-8 p-4 rounded col-md-4">
+                <div class="bg-dark-subtle col-lg-8 p-4 rounded col-md-4">
                     <h5>Call us</h5>
                     <a href="tel: +<?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-telephone-fill"></i>+<?php echo $contact_r['pn1'] ?></a>
                     <br>
@@ -344,7 +348,7 @@
                 </div>
                 <br>
                 <!-- <div class="bg-white me-0 p-3 rounded col-lg-4 col-md-4 " > -->
-                <div class="bg-white col-lg-8 p-4 rounded col-md-4">
+                <div class="bg-dark-subtle col-lg-8 p-4 rounded col-md-4 delay">
                     <h5>Follow us</h5>
                     <?php
                     if ($contact_r['tw'] != '') {

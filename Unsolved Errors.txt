@@ -13,3 +13,6 @@ Above Error is occuring while edititng rooms -
 2. While adding rooms alert of server dowm is popping up !(dont know why) - Solved
 
 3. Bug while clicking on cancle button of forgot password modal login modal should appear but it is not workin. 
+
+4. Due to some unknown xml error the book now section is not workin due to which integrated paytm gateway is not working either.
+    . The date and time function should be working but are not working as they should
