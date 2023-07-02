@@ -34,7 +34,7 @@
                 <p class="delay">We are classmates and luckiely room mates and hence thaught of creating somethnig fun which can add value of our lives and hence made this. <i class="bi bi-cup-hot-fill"></i></p>
             </div>
             <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
-                <img src="images/profiles/group.jpg" alt="" class="w-100 rounded delay">
+                <img src="images/users/group.jpg" alt="" class="w-100 rounded delay">
             </div>
         </div>
     </div>
